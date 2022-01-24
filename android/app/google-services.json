@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "296572277195",
+    "project_id": "flutter-book-club",
+    "storage_bucket": "flutter-book-club.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296572277195:android:6edff6f779790070bfe64e",
+        "android_client_info": {
+          "package_name": "com.example.book_club"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296572277195-9etp0bjkto64o9n3ratbktndqsfj4l0f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.book_club",
+            "certificate_hash": "721afbf163ea632ecdc30e59eeccf0743662d34b"
+          }
+        },
+        {
+          "client_id": "296572277195-491kh7apm5srcv1qv4qdtlqpefh8s6pi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt6DulSS4SYtrOdl1M8EEN28l-VzXnO6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296572277195-491kh7apm5srcv1qv4qdtlqpefh8s6pi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

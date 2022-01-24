@@ -1,0 +1,113 @@
+import 'package:book_club/services/auth.dart';
+import 'package:flutter/material.dart';
+import 'package:book_club/widgets/shadowContainer.dart';
+
+class SignUpForm extends StatefulWidget {
+  @override
+  _SignUpFormState createState() => _SignUpFormState();
+}
+
+class _SignUpFormState extends State<SignUpForm> {
+
+  TextEditingController _fullNameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
+
+  void _signUpUser(String email, String password, BuildContext context, String fullName,) async{
+
+    try{
+      String _returnString = await Auth().signUpUser(email, password, fullName);
+      if(_returnString == "success"){
+        Navigator.pop(context);
+    } else {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(_returnString),
+                duration: Duration(seconds: 2),
+              ));
+      }
+    } catch(e) {
+      print(e);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ShadowContainer(
+      child: Column(
+        children: <Widget> [
+          Padding(padding: const EdgeInsets.symmetric(
+            vertical: 20.0,
+            horizontal: 8.0,
+          ),
+            child: Text("Sign Up", style: TextStyle(color: Theme.of(context).secondaryHeaderColor,
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold)),
+          ),
+          TextFormField(
+            controller: _fullNameController,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.person_outline),
+              hintText: "Full Name",
+            ),
+          ),
+          const SizedBox(height: 20.0),
+          TextFormField(
+            controller: _emailController,
+            decoration: const InputDecoration(
+              prefixIcon: const Icon(Icons.alternate_email),
+              hintText: "Email",
+            ),
+          ),
+          const SizedBox(height: 20.0),
+          TextFormField(
+            controller: _passwordController,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.lock_outline),
+              hintText: "Password",
+            ),
+            obscureText: true,
+          ),
+          const SizedBox(height: 20.0),
+          TextFormField(
+            controller: _confirmPasswordController,
+            decoration: const InputDecoration(
+              prefixIcon: const Icon(Icons.lock_open),
+              hintText: "Confirm Password",
+            ),
+            obscureText: true,
+          ),
+          const SizedBox(height: 20.0),
+          SizedBox(
+            height: 40,
+            child:  ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.grey),
+                shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0),
+                )
+                ),
+              ),
+              child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 100),
+                  child: Text("Sign Up", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,
+                      fontSize: 20.0))
+              ),
+              onPressed: () {
+                if(_passwordController.text == _confirmPasswordController.text){
+                  _signUpUser(_emailController.text, _passwordController.text, context, _fullNameController.text);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Passwords do not match"),
+                    duration: Duration(seconds: 2),
+                  ),
+                  );
+                }
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+

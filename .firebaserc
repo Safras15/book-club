@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "flutter-book-club",
+    "^Z": "flutter-book-club"
+  },
+  "targets": {}
+}
